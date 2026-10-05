@@ -149,7 +149,7 @@ em.brass, .italic { font-family: var(--font-serif); font-style: italic; }
 .site-header .wrap { display: flex; align-items: center; gap: 1.5rem; padding-block: 0.6rem; }
 .brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; flex-shrink: 0; }
 .brand .seal { width: 48px; height: 48px; }
-.brand .wordmark { width: 190px; height: auto; }
+.brand .wordmark { width: 215px; height: auto; }
 .nav { margin-left: auto; display: flex; align-items: center; gap: 0.25rem; }
 .nav a { color: var(--linen); text-decoration: none; padding: 0.5rem 0.65rem; font-size: 0.95rem; border-bottom: 1px solid transparent; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--gold); border-bottom-color: var(--brass); }
@@ -162,7 +162,7 @@ em.brass, .italic { font-family: var(--font-serif); font-style: italic; }
   .nav a { padding: 0.8rem 0; border-bottom: 1px solid rgba(238,234,225,0.08); }
   .nav .btn { margin: 0.75rem 0 0; text-align: center; justify-content: center; }
 }
-@media (max-width: 420px) { .brand .wordmark { width: 150px; } .brand .seal { width: 40px; height: 40px; } }
+@media (max-width: 420px) { .brand .wordmark { width: 170px; } .brand .seal { width: 40px; height: 40px; } }
 
 /* Knappar */
 .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.4rem; font: 600 0.95rem/1.2 var(--font-ui); letter-spacing: 0.02em; text-decoration: none; border: 1px solid transparent; border-radius: var(--radius); cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
@@ -441,7 +441,7 @@ figure.ph { margin: 0; width: 100%; }
 .summary dd { white-space: nowrap; }
 .room-opt .ph { width: 100%; }
 .room-opt .ph .ph-cap span:not(.tag) { display: none; }
-@media (max-width: 1180px) and (min-width: 1061px) { .nav a { padding-inline: 0.45rem; font-size: 0.9rem; } .brand .wordmark { width: 160px; } }
+@media (max-width: 1180px) and (min-width: 1061px) { .nav a { padding-inline: 0.45rem; font-size: 0.9rem; } .brand .wordmark { width: 180px; } }
 @media (max-width: 700px) { .topbar .tb-group:first-child span:first-child { display: none; } .proto { font-size: 0.72rem; } }
 
 /* Grafisk profil: Caslon för rubriker och brödtext, Figtree för bokning och gränssnitt */
