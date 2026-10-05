@@ -149,7 +149,7 @@ em.brass, .italic { font-family: var(--font-serif); font-style: italic; }
 .site-header .wrap { display: flex; align-items: center; gap: 1.5rem; padding-block: 0.6rem; }
 .brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; flex-shrink: 0; }
 .brand .seal { width: 48px; height: 48px; }
-.brand .wordmark { width: 215px; height: auto; }
+.brand .wordmark { width: 240px; height: auto; }
 .nav { margin-left: auto; display: flex; align-items: center; gap: 0.25rem; }
 .nav a { color: var(--linen); text-decoration: none; padding: 0.5rem 0.65rem; font-size: 0.95rem; border-bottom: 1px solid transparent; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--gold); border-bottom-color: var(--brass); }
@@ -441,7 +441,7 @@ figure.ph { margin: 0; width: 100%; }
 .summary dd { white-space: nowrap; }
 .room-opt .ph { width: 100%; }
 .room-opt .ph .ph-cap span:not(.tag) { display: none; }
-@media (max-width: 1180px) and (min-width: 1061px) { .nav a { padding-inline: 0.45rem; font-size: 0.9rem; } .brand .wordmark { width: 180px; } }
+@media (max-width: 1180px) and (min-width: 1061px) { .nav a { padding-inline: 0.45rem; font-size: 0.9rem; } .brand .wordmark { width: 200px; } }
 @media (max-width: 700px) { .topbar .tb-group:first-child span:first-child { display: none; } .proto { font-size: 0.72rem; } }
 
 /* Grafisk profil: Caslon för rubriker och brödtext, Figtree för bokning och gränssnitt */
