@@ -1,6 +1,10 @@
 /* Gammeleksgården – gemensamt skript. Ingen extern beroende. */
 (function () {
   "use strict";
+  // Texter som skrivs av skriptet. Översätts per språk via <script id="t"> i sidan.
+  var T = { sending: "Skickar…", retry: "Försök igen", sendError: "Det gick inte att skicka just nu. Försök igen eller ring 073-505 24 45.", max: "Max", guest: "gäst", guests: "gäster", night: "natt", nights: "nätter", for: "för", chooseRoom: "Välj rum", copied: "Kopierat" };
+  try { var tEl = document.getElementById("t"); if (tEl) { var tt = JSON.parse(tEl.textContent); for (var k in tt) T[k] = tt[k]; } } catch (e) {}
+  var LOC = ({ sv: "sv-SE", en: "en-GB", da: "da-DK", nb: "nb-NO", fi: "fi-FI", de: "de-DE", nl: "nl-NL", fr: "fr-FR", es: "es-ES", it: "it-IT" })[document.documentElement.lang] || "sv-SE";
 
   var store = {
     get: function (k) { try { return JSON.parse(sessionStorage.getItem(k)); } catch (e) { return null; } },
@@ -64,10 +68,10 @@
       // Skarp drift: skicka till formulärtjänsten (data-forms på <html>). Utan den är det förhandsläge och inget skickas.
       var endpoint = document.documentElement.getAttribute("data-forms");
       if (endpoint) {
-        btn.disabled = true; btn.textContent = "Skickar…";
+        btn.disabled = true; btn.textContent = T.sending;
         fetch(endpoint, { method: "POST", headers: { "Accept": "application/json" }, body: new FormData(f) })
           .then(function (r) { if (!r.ok) throw new Error(r.status); showDone(); })
-          .catch(function () { btn.disabled = false; btn.textContent = "Försök igen"; alertBox(f, "Det gick inte att skicka just nu. Försök igen eller ring 073-505 24 45."); });
+          .catch(function () { btn.disabled = false; btn.textContent = T.retry; alertBox(f, T.sendError); });
         return;
       }
       if (done) {
@@ -128,8 +132,8 @@
     var want = (function () { try { return decodeURIComponent((location.hash || "").slice(1)); } catch (e) { return ""; } })();
     if (want) { var pre = document.querySelector('.room-opt input[value="' + want + '"]'); if (pre) pre.checked = true; }
 
-    var fmt = new Intl.NumberFormat("sv-SE");
-    var dfmt = new Intl.DateTimeFormat("sv-SE", { weekday: "short", day: "numeric", month: "short" });
+    var fmt = new Intl.NumberFormat(LOC);
+    var dfmt = new Intl.DateTimeFormat(LOC, { weekday: "short", day: "numeric", month: "short" });
 
     function update() {
       if (fd.value <= fa.value) fd.value = iso(addDays(new Date(fa.value), 1));
@@ -144,7 +148,7 @@
         o.classList.toggle("soldout", tooSmall);
         input.disabled = tooSmall;
         if (tooSmall && input.checked) input.checked = false;
-        o.querySelector(".rp-note").textContent = tooSmall ? "Max " + cap + " gäster" : fmt.format(parseInt(o.getAttribute("data-price"), 10) * nights) + " kr för " + nights + (nights === 1 ? " natt" : " nätter");
+        o.querySelector(".rp-note").textContent = tooSmall ? T.max + " " + cap + " " + T.guests : fmt.format(parseInt(o.getAttribute("data-price"), 10) * nights) + " kr " + T.for + " " + nights + " " + (nights === 1 ? T.night : T.nights);
       });
       var sel = document.querySelector(".room-opt input:checked");
       if (!sel) { var first = document.querySelector(".room-opt input:not(:disabled)"); if (first) { first.checked = true; sel = first; } }
@@ -153,9 +157,9 @@
       var total = price * nights;
       var ota = Math.round(total * 1.1 / 10) * 10;
       document.getElementById("s-dates").textContent = dfmt.format(new Date(fa.value)) + " – " + dfmt.format(new Date(fd.value));
-      document.getElementById("s-nights").textContent = nights + (nights === 1 ? " natt" : " nätter");
-      document.getElementById("s-guests").textContent = guests + (guests === 1 ? " gäst" : " gäster");
-      document.getElementById("s-room").textContent = opt ? opt.getAttribute("data-name") : "Välj rum";
+      document.getElementById("s-nights").textContent = nights + " " + (nights === 1 ? T.night : T.nights);
+      document.getElementById("s-guests").textContent = guests + " " + (guests === 1 ? T.guest : T.guests);
+      document.getElementById("s-room").textContent = opt ? opt.getAttribute("data-name") : T.chooseRoom;
       document.getElementById("s-total").textContent = fmt.format(total) + " kr";
       document.getElementById("s-ota").textContent = fmt.format(ota) + " kr";
       document.getElementById("s-save").textContent = fmt.format(ota - total) + " kr";
@@ -174,7 +178,7 @@
   document.querySelectorAll("[data-copy]").forEach(function (b) {
     b.addEventListener("click", function () {
       var t = b.getAttribute("data-copy"), old = b.textContent;
-      var ok = function () { b.textContent = "Kopierat"; setTimeout(function () { b.textContent = old; }, 1600); };
+      var ok = function () { b.textContent = T.copied; setTimeout(function () { b.textContent = old; }, 1600); };
       if (navigator.clipboard) navigator.clipboard.writeText(t).then(ok, function () {});
     });
   });
@@ -190,4 +194,17 @@
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { v.pause(); v.removeAttribute("autoplay"); return; }
   var small = v.querySelector('source[media]');
   if (small && window.innerWidth <= 800 && v.currentSrc.indexOf("720") < 0) { v.src = small.getAttribute("src"); v.load(); v.play().catch(function () {}); }
+})();
+
+// Fäll ihop huvudmenyn när den inte får plats på en rad (t.ex. tyska eller franska).
+(function () {
+  var head = document.querySelector(".site-header .wrap"), root = document.documentElement;
+  if (!head) return;
+  function fit() {
+    root.classList.remove("nav-collapsed");
+    if (window.innerWidth > 1060 && head.scrollWidth > head.clientWidth + 1) root.classList.add("nav-collapsed");
+  }
+  fit();
+  window.addEventListener("resize", fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
 })();

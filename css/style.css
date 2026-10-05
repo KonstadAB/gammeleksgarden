@@ -471,3 +471,20 @@ body { line-height: 1.65; }
 .hero-film .lede { color: #E9E4D8; }
 @media (max-width: 700px) { .hero-film::before { background: linear-gradient(0deg, rgba(20,30,24,0.9) 20%, rgba(20,30,24,0.55) 100%); } }
 @media (prefers-reduced-motion: reduce) { .hero-film .hero-bg { display: none; } .hero-film { background: #1a2620 url("../assets/video/hero-poster.jpg") center 35% / cover; } }
+
+/* Språkväljare i toppraden */
+.lang-menu { position: relative; }
+.lang-menu summary { cursor: pointer; list-style: none; }
+.lang-menu summary::-webkit-details-marker { display: none; }
+.lang-menu summary::after { content: " ▾"; font-size: 0.8em; }
+.lang-menu ul { position: absolute; right: 0; top: calc(100% + 0.4rem); z-index: 60; margin: 0; padding: 0.4rem 0; list-style: none; background: var(--green); border: 1px solid rgba(210,176,124,0.35); min-width: 10rem; box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+.lang-menu li a { display: block; padding: 0.35rem 1rem; color: var(--linen); text-decoration: none; }
+.lang-menu li a:hover, .lang-menu li a[aria-current] { color: var(--gold); }
+
+/* Längre menyord på andra språk: bredare sidhuvud, och fäll ihop menyn om den ändå inte får plats (sätts av main.js). */
+.site-header .wrap { max-width: 86rem; }
+html.nav-collapsed .nav-toggle { display: inline-flex; gap: 0.5rem; align-items: center; }
+html.nav-collapsed .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--green); flex-direction: column; align-items: stretch; padding: 0.5rem var(--gutter) 1.25rem; border-top: 1px solid rgba(210,176,124,0.25); max-height: calc(100vh - 80px); overflow-y: auto; }
+html.nav-collapsed .nav.open { display: flex; }
+html.nav-collapsed .nav a { padding: 0.8rem 0; border-bottom: 1px solid rgba(238,234,225,0.08); }
+html.nav-collapsed .nav .btn { margin: 0.75rem 0 0; text-align: center; justify-content: center; }
