@@ -1,0 +1,3 @@
+# Ej lanserad än: sidorna har noindex. Byt site.launched till true vid lansering.
+User-agent: *
+Allow: /

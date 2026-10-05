@@ -1,0 +1,15 @@
+{
+  "name": "Gammeleksgården",
+  "short_name": "Gammeleksgården",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#22322A",
+  "theme_color": "#22322A",
+  "icons": [
+    {
+      "src": "/assets/sigill.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
