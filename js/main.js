@@ -182,3 +182,12 @@
   // Årtal i sidfoten
   document.querySelectorAll("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();
+
+// Hero-film: mindre fil på mobil, ingen film vid "minska rörelse".
+(function () {
+  var v = document.querySelector(".hero-bg");
+  if (!v) return;
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { v.pause(); v.removeAttribute("autoplay"); return; }
+  var small = v.querySelector('source[media]');
+  if (small && window.innerWidth <= 800 && v.currentSrc.indexOf("720") < 0) { v.src = small.getAttribute("src"); v.load(); v.play().catch(function () {}); }
+})();

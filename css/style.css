@@ -462,3 +462,12 @@ body { line-height: 1.65; }
 .media-slot .ph.photo { opacity: 0.5; }
 .media-slot.video { display: block; background: #111; }
 .media-slot.video video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* Hero med drönarfilm på startsidan */
+.hero-film { min-height: min(82vh, 52rem); display: grid; align-items: center; background: #1a2620; }
+.hero-film .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+.hero-film::before { z-index: 0; background: linear-gradient(90deg, rgba(20,30,24,0.86) 0%, rgba(20,30,24,0.62) 45%, rgba(20,30,24,0.15) 100%), linear-gradient(0deg, rgba(20,30,24,0.55), transparent 40%); }
+.hero-film .wrap { z-index: 1; grid-template-columns: minmax(0, 40rem); }
+.hero-film .lede { color: #E9E4D8; }
+@media (max-width: 700px) { .hero-film::before { background: linear-gradient(0deg, rgba(20,30,24,0.9) 20%, rgba(20,30,24,0.55) 100%); } }
+@media (prefers-reduced-motion: reduce) { .hero-film .hero-bg { display: none; } .hero-film { background: #1a2620 url("../assets/video/hero-poster.jpg") center 35% / cover; } }
