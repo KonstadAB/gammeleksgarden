@@ -1,6 +1,8 @@
 /* Gammeleksgården – gemensamt skript. Ingen extern beroende. */
 (function () {
   "use strict";
+  // Gamla länkar med index.html eller .html visas med ren adress.
+  if (/\.html$/.test(location.pathname) && !/404\.html$/.test(location.pathname) && history.replaceState) history.replaceState(null, "", location.pathname.replace(/index\.html$/, "").replace(/\.html$/, "") + location.search + location.hash);
   // Texter som skrivs av skriptet. Översätts per språk via <script id="t"> i sidan.
   var T = { sending: "Skickar…", retry: "Försök igen", sendError: "Det gick inte att skicka just nu. Försök igen eller ring 073-505 24 45.", max: "Max", guest: "gäst", guests: "gäster", night: "natt", nights: "nätter", for: "för", chooseRoom: "Välj rum", copied: "Kopierat" };
   try { var tEl = document.getElementById("t"); if (tEl) { var tt = JSON.parse(tEl.textContent); for (var k in tt) T[k] = tt[k]; } } catch (e) {}
