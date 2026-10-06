@@ -488,3 +488,8 @@ html.nav-collapsed .nav { display: none; position: absolute; left: 0; right: 0; 
 html.nav-collapsed .nav.open { display: flex; }
 html.nav-collapsed .nav a { padding: 0.8rem 0; border-bottom: 1px solid rgba(238,234,225,0.08); }
 html.nav-collapsed .nav .btn { margin: 0.75rem 0 0; text-align: center; justify-content: center; }
+
+/* Fotokredit för lånade bilder */
+.ph.photo { position: relative; }
+.ph.photo .credit { display: block; width: auto; height: auto; text-align: right; position: absolute; right: 0; bottom: 0; max-width: 100%; padding: .2rem .5rem; font: 400 .68rem/1.3 var(--ui, system-ui, sans-serif); color: #fff; background: rgba(0,0,0,.45); border-top-left-radius: 3px; }
+.ph.photo .credit a { display: inline; color: inherit; }
