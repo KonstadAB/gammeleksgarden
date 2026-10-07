@@ -137,6 +137,11 @@
     var fmt = new Intl.NumberFormat(LOC);
     var dfmt = new Intl.DateTimeFormat(LOC, { weekday: "short", day: "numeric", month: "short" });
 
+    // data-price = lägsta pris för 1–2 / 3 / 4 gäster, t.ex. "795,995,1195".
+    function priceFor(o, guests) {
+      var p = o.getAttribute("data-price").split(",").map(function (x) { return parseInt(x, 10); });
+      return p[Math.min(Math.max(guests - 2, 0), p.length - 1)];
+    }
     function update() {
       if (fd.value <= fa.value) fd.value = iso(addDays(new Date(fa.value), 1));
       fd.min = iso(addDays(new Date(fa.value), 1));
@@ -150,12 +155,12 @@
         o.classList.toggle("soldout", tooSmall);
         input.disabled = tooSmall;
         if (tooSmall && input.checked) input.checked = false;
-        o.querySelector(".rp-note").textContent = tooSmall ? T.max + " " + cap + " " + T.guests : fmt.format(parseInt(o.getAttribute("data-price"), 10) * nights) + " kr " + T.for + " " + nights + " " + (nights === 1 ? T.night : T.nights);
+        o.querySelector(".rp-note").textContent = tooSmall ? T.max + " " + cap + " " + T.guests : fmt.format(priceFor(o, guests) * nights) + " kr " + T.for + " " + nights + " " + (nights === 1 ? T.night : T.nights);
       });
       var sel = document.querySelector(".room-opt input:checked");
       if (!sel) { var first = document.querySelector(".room-opt input:not(:disabled)"); if (first) { first.checked = true; sel = first; } }
       var opt = sel && sel.closest(".room-opt");
-      var price = opt ? parseInt(opt.getAttribute("data-price"), 10) : 0;
+      var price = opt ? priceFor(opt, guests) : 0;
       var total = price * nights;
       var ota = Math.round(total * 1.1 / 10) * 10;
       document.getElementById("s-dates").textContent = dfmt.format(new Date(fa.value)) + " – " + dfmt.format(new Date(fd.value));
