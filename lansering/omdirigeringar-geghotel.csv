@@ -1,0 +1,8 @@
+gammal_url,ny_url,status,kalla,kommentar
+https://geghotel.se/,https://xn--gammeleksgrden-uib.se/,301,domänbyte,Startsidan. Gäller även http:// och www.geghotel.se
+https://geghotel.se/langtidsboende/,https://xn--gammeleksgrden-uib.se/foretag/langtidsboende,301,_redirects i repot,Även utan avslutande snedstreck
+https://geghotel.se/evenemang/,https://xn--gammeleksgrden-uib.se/fest-och-event/,301,_redirects i repot,Även utan avslutande snedstreck
+https://geghotel.se/bokningsvillkor-2/,https://xn--gammeleksgrden-uib.se/bokningsvillkor/,301,_redirects i repot,
+https://geghotel.se/en/long-term-stay/,https://xn--gammeleksgrden-uib.se/en/foretag/langtidsboende,301,_redirects i repot,Engelska sidan går till engelska versionen
+https://geghotel.se/en/events/,https://xn--gammeleksgrden-uib.se/en/fest-och-event/,301,_redirects i repot,Engelska sidan går till engelska versionen
+https://geghotel.se/FYLLS-I-FRAN-SEARCH-CONSOLE/,https://xn--gammeleksgrden-uib.se/VALJ-NY-SIDA,301,Search Console geghotel.se,Mall: en rad per gammal adress med klick/visningar eller externa länkar

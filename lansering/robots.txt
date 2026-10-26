@@ -1,0 +1,7 @@
+# robots.txt för https://gammeleksgården.se (xn--gammeleksgrden-uib.se)
+# Kopieras till roten vid lansering, se HANDOFF.md.
+# 404-sidan och /exempel/ har egen noindex och ska inte spärras här.
+User-agent: *
+Allow: /
+
+Sitemap: https://xn--gammeleksgrden-uib.se/sitemap.xml

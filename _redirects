@@ -2,6 +2,6 @@
 /langtidsboende/     /foretag/langtidsboende   301
 /evenemang           /fest-och-event/          301
 /evenemang/          /fest-och-event/          301
-/en/long-term-stay/  /foretag/langtidsboende   301
-/en/events/          /fest-och-event/          301
+/en/long-term-stay/  /en/foretag/langtidsboende 301
+/en/events/          /en/fest-och-event/       301
 /bokningsvillkor-2/  /bokningsvillkor/         301

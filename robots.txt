@@ -1,3 +1,6 @@
-# Ej lanserad än: sidorna har noindex. Byt site.launched till true vid lansering.
+# Ej lanserad än: alla sidor har <meta name="robots" content="noindex">.
+# Spärra INTE sajten här med Disallow: då kan Google inte läsa noindex.
+# Lanseringsversionen ligger i /lansering/robots.txt (se HANDOFF.md).
 User-agent: *
 Allow: /
+Disallow: /lansering/
