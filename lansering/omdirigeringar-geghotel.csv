@@ -1,8 +1,20 @@
 gammal_url,ny_url,status,kalla,kommentar
 https://geghotel.se/,https://xn--gammeleksgrden-uib.se/,301,domänbyte,Startsidan. Gäller även http:// och www.geghotel.se
-https://geghotel.se/langtidsboende/,https://xn--gammeleksgrden-uib.se/foretag/langtidsboende,301,_redirects i repot,Även utan avslutande snedstreck
-https://geghotel.se/evenemang/,https://xn--gammeleksgrden-uib.se/fest-och-event/,301,_redirects i repot,Även utan avslutande snedstreck
-https://geghotel.se/bokningsvillkor-2/,https://xn--gammeleksgrden-uib.se/bokningsvillkor/,301,_redirects i repot,
-https://geghotel.se/en/long-term-stay/,https://xn--gammeleksgrden-uib.se/en/foretag/langtidsboende,301,_redirects i repot,Engelska sidan går till engelska versionen
-https://geghotel.se/en/events/,https://xn--gammeleksgrden-uib.se/en/fest-och-event/,301,_redirects i repot,Engelska sidan går till engelska versionen
-https://geghotel.se/FYLLS-I-FRAN-SEARCH-CONSOLE/,https://xn--gammeleksgrden-uib.se/VALJ-NY-SIDA,301,Search Console geghotel.se,Mall: en rad per gammal adress med klick/visningar eller externa länkar
+https://geghotel.se/langtidsboende/,https://xn--gammeleksgrden-uib.se/foretag/langtidsboende,301,sitemap geghotel.se 2026-11-16,Även utan avslutande snedstreck
+https://geghotel.se/evenemang/,https://xn--gammeleksgrden-uib.se/fest-och-event/,301,sitemap geghotel.se 2026-11-16,Även utan avslutande snedstreck
+https://geghotel.se/kontakt/,https://xn--gammeleksgrden-uib.se/kontakt/,301,sitemap geghotel.se 2026-11-16,Samma adress
+https://geghotel.se/upptack/,https://xn--gammeleksgrden-uib.se/upptack/,301,sitemap geghotel.se 2026-11-16,Samma adress
+https://geghotel.se/bokningsvillkor/,https://xn--gammeleksgrden-uib.se/bokningsvillkor/,301,sitemap geghotel.se 2026-11-16,Samma adress
+https://geghotel.se/bokningsvillkor-och-regler/,https://xn--gammeleksgrden-uib.se/bokningsvillkor/,301,sitemap geghotel.se 2026-11-16,Två villkorssidor blir en
+https://geghotel.se/bokningsvillkor-2/,https://xn--gammeleksgrden-uib.se/bokningsvillkor/,301,äldre adress,
+https://geghotel.se/privacy-policy/,https://xn--gammeleksgrden-uib.se/integritet/,301,länk på geghotel.se,
+https://geghotel.se/cookie-policy/,https://xn--gammeleksgrden-uib.se/integritet/,301,länk på geghotel.se,
+https://geghotel.se/sv/kontakt/,https://xn--gammeleksgrden-uib.se/kontakt/,301,länk på geghotel.se,
+https://geghotel.se/en/,https://xn--gammeleksgrden-uib.se/en/,301,sitemap geghotel.se 2026-11-16,Samma adress
+https://geghotel.se/en/events/,https://xn--gammeleksgrden-uib.se/en/fest-och-event/,301,sitemap geghotel.se 2026-11-16,
+https://geghotel.se/en/long-term-rental/,https://xn--gammeleksgrden-uib.se/en/foretag/langtidsboende,301,sitemap geghotel.se 2026-11-16,
+https://geghotel.se/en/long-term-stay/,https://xn--gammeleksgrden-uib.se/en/foretag/langtidsboende,301,äldre adress,
+https://geghotel.se/en/contact/,https://xn--gammeleksgrden-uib.se/en/kontakt/,301,sitemap geghotel.se 2026-11-16,
+https://geghotel.se/en/discover/,https://xn--gammeleksgrden-uib.se/en/upptack/,301,sitemap geghotel.se 2026-11-16,
+https://geghotel.se/en/rooms/,https://xn--gammeleksgrden-uib.se/en/rum/,301,sitemap geghotel.se 2026-11-16,
+https://geghotel.se/FYLLS-I-FRAN-SEARCH-CONSOLE/,https://xn--gammeleksgrden-uib.se/VALJ-NY-SIDA,301,Search Console geghotel.se,Mall: fler adresser med klick/visningar eller externa länkar

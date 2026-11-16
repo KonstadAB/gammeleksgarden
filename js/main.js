@@ -21,6 +21,10 @@
       var open = nav.classList.toggle("open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
+    // Esc stänger menyn och lämnar fokus på knappen
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("open")) { nav.classList.remove("open"); toggle.setAttribute("aria-expanded", "false"); toggle.focus(); }
+    });
   }
 
   // Datumhjälp
@@ -194,13 +198,31 @@
   document.querySelectorAll("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();
 
-// Hero-film: mindre fil på mobil, ingen film vid "minska rörelse".
+// Hero-film: stillbilden visas direkt, filmen hämtas först när sidan har laddats.
+// Ingen film vid "minska rörelse" eller sparat dataläge. Pausknapp enligt WCAG 2.2.2.
 (function () {
-  var v = document.querySelector(".hero-bg");
+  var v = document.querySelector(".hero-video");
   if (!v) return;
-  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { v.pause(); v.removeAttribute("autoplay"); return; }
-  var small = v.querySelector('source[media]');
-  if (small && window.innerWidth <= 800 && v.currentSrc.indexOf("720") < 0) { v.src = small.getAttribute("src"); v.load(); v.play().catch(function () {}); }
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var save = navigator.connection && navigator.connection.saveData;
+  if (reduce || save) return;
+  var btn = document.querySelector(".hero-pause");
+  function start() {
+    v.src = window.innerWidth <= 800 ? v.getAttribute("data-src-small") : v.getAttribute("data-src");
+    v.addEventListener("playing", function () { v.classList.add("is-playing"); }, { once: true });
+    var p = v.play(); if (p && p.catch) p.catch(function () {});
+    if (btn) {
+      btn.hidden = false;
+      btn.addEventListener("click", function () {
+        var paused = btn.getAttribute("aria-pressed") === "true";
+        if (paused) { v.play(); } else { v.pause(); }
+        btn.setAttribute("aria-pressed", paused ? "false" : "true");
+        btn.querySelector(".hero-pause-label").textContent = btn.getAttribute(paused ? "data-pause" : "data-play");
+      });
+    }
+  }
+  if (document.readyState === "complete") setTimeout(start, 300);
+  else window.addEventListener("load", function () { setTimeout(start, 300); });
 })();
 
 // Fäll ihop huvudmenyn när den inte får plats på en rad (t.ex. tyska eller franska).

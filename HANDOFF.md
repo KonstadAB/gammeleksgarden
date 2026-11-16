@@ -1,6 +1,6 @@
 # HANDOFF – gammeleksgården.se
 
-Senast uppdaterad: 26 okt 2026 (HQ uppdrag #6, gren `hq/seo-forberedelse-for-gammeleksgarden-se--2610261121`).
+Senast uppdaterad: 16 nov 2026 (åtgärder efter juryjämförelsen med geghotel.se, se nedan). Före det 26 okt 2026 (HQ uppdrag #6).
 
 ## Läget
 
@@ -30,7 +30,7 @@ Senast uppdaterad: 26 okt 2026 (HQ uppdrag #6, gren `hq/seo-forberedelse-for-gam
    - `BreadcrumbList` på alla undersidor. Rättat: brödsmulor, rumslistor och erbjudanden på andra språk pekade på svenska sidor och pekar nu på samma språk.
      Rums-URL:er hade avslutande `/` som inte matchade canonical. `&amp;` i namn är avkodat.
    - `WebSite.inLanguage` listar alla tio språk (stod `sv-SE` även på t.ex. engelska startsidan).
-   - `VideoObject` borttaget på rundtursidorna: filen `assets/img/flyover.mp4` finns inte i repot (se nästa steg).
+   - `VideoObject` borttaget på rundtursidorna. Drönarfilmen finns nu som `assets/video/flyover.mp4` (se 16 nov nedan); VideoObject kan läggas tillbaka.
 3. **Sitemap och robots (inaktiva):** `lansering/sitemap.xml` (190 adresser, 19 sidor × 10 språk, med hreflang och x-default) och `lansering/robots.txt` med `Sitemap:`-rad.
    Bokningsvillkor, integritet, 404 och exempelsidan är utelämnade ur sitemap. Rot-`robots.txt` spärrar `/lansering/`.
    Ny sitemap: `python3 verktyg/seo.py sitemap > lansering/sitemap.xml`.
@@ -59,6 +59,20 @@ Senast uppdaterad: 26 okt 2026 (HQ uppdrag #6, gren `hq/seo-forberedelse-for-gam
 Testat: `python3 verktyg/seo.py kontroll` → "Inga fel" (212 sidor). All JSON-LD går att tolka. Sitemap är giltig XML och har samma 190 adresser som tidigare.
 Lanseringsstegen nedan är provkörda i en kopia av repot, och `kontroll --lanserad` gav "Inga fel".
 
+## Gjort 16 nov 2026 (efter juryjämförelsen med geghotel.se)
+
+Rapport och mätdata: projektmappen `geg-hotel/teknisk-jamforelse/`.
+
+- **Startsidans film:** `hero-1080.mp4` (8,3 MB) ersatt av `hero-1280.mp4` (1,7 MB) och `hero-720.mp4` (0,7 MB), H.264 utan ljud. En WebP-stillbild (`hero-poster-720/1280.webp`, 50/129 kB) visas först och är LCP-elementet. Filmen hämtas först efter `load`, och inte alls vid "minska rörelse" eller sparat dataläge. Synlig pausknapp (WCAG 2.2.2).
+- **Kontrast:** den mörka tonen (`.hero-film::before`) ligger nu ovanpå filmen (z-index). Boka-knappen i menyn har mörk text, länkar i topplisten är understrukna, fokusringen är mörk mässing på ljus botten.
+- **Typsnitt på egen server:** `css/fonts.css` + `assets/fonts/*.woff2` (OFL), `font-display: optional` och preload. Inga anrop till Google.
+- **Säkerhet:** meta-CSP och referrer-policy i alla 212 sidor (GitHub Pages kan inte skicka rubriker). `_headers` har nu CSP med `frame-ancestors 'none'` och X-Frame-Options för Cloudflare Pages. Ändras formulärtjänsten från Formspree måste CSP:n (connect-src, form-action) ändras på alla sidor.
+- **Omdömen:** källa och datum under betygen (Hotels.com, 150 omdömen, okt 2026) och tydligt att texterna är sammanfattningar.
+- **Innehåll från geghotel.se** (alla tio språk): fest (dansgolv, egen musik, terrass/gård, tillgänglighet, egen mat och dryck eller catering), långtidsboende (arbetsfordon, laddning, smart-TV, samlad faktura, konferensrum) och Upptäck (golf, Sandbergen/Skåneleden, Borgen/Glumslöv, kanot/kajak/SUP, Väla).
+- **Övrigt:** WhatsApp-länk (wa.me) i topplisten, Esc stänger menyn, inga sidledsglidningar vid 320 px på 100 testade sidor, rubrikordning, landmärken (`aside`) för topplist och förhandsremsa, 404-sidans språklänkar, avstånden på startsidan.
+- **Omdirigeringar:** `_redirects` och `lansering/omdirigeringar-geghotel.csv` följer nu geghotel.se:s verkliga sitemap (13 sidor) plus policy- och kontaktlänkar. Exemplet för .htaccess ovan är äldre; använd CSV:n. Gäller oavsett namnval: behålls namnet GEG Hotel och sajten läggs på geghotel.se behövs samma sökvägar.
+- Testat: `verktyg/seo.py kontroll` "Inga fel" (212 sidor), axe 0 fel på 17 sidor i ljust och mörkt läge, Lighthouse lokalt startsidan mobil 74 → 96 (LCP 5,6 → 2,7 s).
+
 ## Lanseringschecklista (upprättad 26 okt 2026)
 
 Gör ingenting av detta förrän ägaren av GammelEksGården sagt ja.
@@ -79,7 +93,7 @@ Gör ingenting av detta förrän ägaren av GammelEksGården sagt ja.
 
 ## Nästa steg och kända brister (utanför detta uppdrag)
 
-- **Drönarfilmen saknas:** startsidan och rundtursidan (alla språk) visar en videospelare med `assets/img/flyover.mp4`, men filen finns inte i repot.
+- ~~Drönarfilmen saknas~~ Finns sedan 16 nov som `assets/video/flyover.mp4` (3,6 MB).
   Lägg in filen (eller peka om till `assets/video/`) och lägg tillbaka `VideoObject` med rätt `contentUrl` och verkligt uppladdningsdatum.
 - 360°-rundturen är en platshållare ("bäddas in efter fotograferingen"), medan rundturens meta-text lovar 360°. Byt texten eller lägg in rundturen före lansering.
 - Besöksstatistik: bara Fathom (site CBINBQJR). GoatCounter är borttaget från alla sidor och integritetssidorna nämner Fathom (16 nov 2026).
