@@ -166,14 +166,11 @@
       var opt = sel && sel.closest(".room-opt");
       var price = opt ? priceFor(opt, guests) : 0;
       var total = price * nights;
-      var ota = Math.round(total * 1.1 / 10) * 10;
       document.getElementById("s-dates").textContent = dfmt.format(new Date(fa.value)) + " – " + dfmt.format(new Date(fd.value));
       document.getElementById("s-nights").textContent = nights + " " + (nights === 1 ? T.night : T.nights);
       document.getElementById("s-guests").textContent = guests + " " + (guests === 1 ? T.guest : T.guests);
       document.getElementById("s-room").textContent = opt ? opt.getAttribute("data-name") : T.chooseRoom;
       document.getElementById("s-total").textContent = fmt.format(total) + " kr";
-      document.getElementById("s-ota").textContent = fmt.format(ota) + " kr";
-      document.getElementById("s-save").textContent = fmt.format(ota - total) + " kr";
     }
     [fa, fd, fg].forEach(function (el) { el.addEventListener("change", update); });
     document.querySelectorAll(".room-opt input").forEach(function (el) { el.addEventListener("change", update); });
