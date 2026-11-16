@@ -2,6 +2,8 @@
 <html lang="sv">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.usefathom.com; connect-src 'self' https://cdn.usefathom.com https://formspree.io; img-src 'self' data: https://cdn.usefathom.com; style-src 'self' 'unsafe-inline'; font-src 'self'; media-src 'self'; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Boende nära Ven – hotell en kvart från Ven-båten i Landskrona | Gammeleksgården</title>
 <meta name="description" content="Bo på Gammeleksgården och ta båten till Ven från Landskrona, ungefär 10 km bort. Rum med eget badrum, fri parkering och tips för en dag på Ven med cykel.">
@@ -29,21 +31,22 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../assets/sigill.svg" type="image/svg+xml">
 <link rel="manifest" href="../site.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
-<link rel="stylesheet" href="../css/style.css?v=muy5pmp0">
+<link rel="preload" href="../assets/fonts/libre-caslon-display-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/libre-caslon-text-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/figtree-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/fonts.css?v=r1116">
+<link rel="stylesheet" href="../css/style.css?v=r1116">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristTrip","name":"En dag på Ven från Gammeleksgården","description":"Bo på Gammeleksgården i Härslöv och ta båten från Landskrona hamn till Ven.","touristType":["Cyklister","Familjer","Par"],"provider":{"@id":"https://xn--gammeleksgrden-uib.se/#hotel"},"itinerary":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"TouristAttraction","name":"Landskrona hamn"}},{"@type":"ListItem","position":2,"item":{"@type":"TouristAttraction","name":"Bäckviken, Ven"}},{"@type":"ListItem","position":3,"item":{"@type":"TouristAttraction","name":"Tycho Brahe-museet"}},{"@type":"ListItem","position":4,"item":{"@type":"TouristAttraction","name":"Backafallen"}},{"@type":"ListItem","position":5,"item":{"@type":"TouristAttraction","name":"Kyrkbacken"}}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Finns det hotell på Ven?","acceptedAnswer":{"@type":"Answer","text":"Ja, men bara några få små boenden, och de fylls snabbt på sommaren. Därför bor många på fastlandet och tar båten över för dagen."}},{"@type":"Question","name":"Hur långt är det från Gammeleksgården till Ven-båten?","acceptedAnswer":{"@type":"Answer","text":"Båten går från Skeppsbron i Landskrona, ungefär 10 km från gården och en kvart med bil. Det finns parkeringar precis vid terminalen."}},{"@type":"Question","name":"Hur lång tid tar båten till Ven?","acceptedAnswer":{"@type":"Answer","text":"Överfarten från Landskrona till Bäckviken på Ven tar knappt en halvtimme. Båten går året runt, flera gånger om dagen. Köp biljett online hos Ventrafiken, annars kan det bli lång väntan på sommaren."}},{"@type":"Question","name":"Kan jag ta med bilen till Ven?","acceptedAnswer":{"@type":"Answer","text":"Det går, men vi rekommenderar att du lämnar bilen i Landskrona. Ön är liten och upptäcks bäst på cykel. Ta med egen cykel på båten mot en avgift, eller hyr en vid hamnen i Bäckviken."}},{"@type":"Question","name":"Varför bo på fastlandet i stället för på ön?","acceptedAnswer":{"@type":"Answer","text":"Du får lugna rum med eget badrum, fri parkering och nära till E6. Du kan göra Ven en dag och Helsingborg, Landskrona eller Kronborg nästa, utan att passa sista båten tillbaka."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","item":"https://xn--gammeleksgrden-uib.se/"},{"@type":"ListItem","position":2,"name":"Upptäck","item":"https://xn--gammeleksgrden-uib.se/upptack/"},{"@type":"ListItem","position":3,"name":"Boende nära Ven","item":"https://xn--gammeleksgrden-uib.se/boende-nara-ven/"}]}</script>
 </head>
 <body>
 <a class="skip" href="#main">Hoppa till innehållet</a>
-<div class="proto"><strong>Förhandsversion</strong> · priser och vissa uppgifter är preliminära tills Toto gett klartecken 😉</div>
-<div class="topbar"><div class="wrap">
-  <div class="tb-group"><span>Rosenhällsvägen 40, Härslöv · vid E6</span><span>Ring eller WhatsApp: <a href="tel:+46735052445">073-505 24 45</a></span></div>
+<aside class="proto" aria-label="Förhandsversion"><strong>Förhandsversion</strong> · priser och vissa uppgifter är preliminära tills Toto gett klartecken 😉</aside>
+<aside class="topbar" aria-label="Kontakt och språk"><div class="wrap">
+  <div class="tb-group"><span>Rosenhällsvägen 40, Härslöv · vid E6</span><span>Ring eller WhatsApp: <a href="tel:+46735052445">073-505 24 45</a> · <a href="https://wa.me/46735052445">WhatsApp</a></span></div>
   <div class="tb-group"><a href="../vanliga-fragor/">Vanliga frågor</a><details class="lang-menu"><summary>Svenska</summary><ul><li><a href="../boende-nara-ven/" hreflang="sv" lang="sv" aria-current="true">Svenska</a></li><li><a href="../en/boende-nara-ven/" hreflang="en" lang="en">English</a></li><li><a href="../da/boende-nara-ven/" hreflang="da" lang="da">Dansk</a></li><li><a href="../nb/boende-nara-ven/" hreflang="nb" lang="nb">Norsk</a></li><li><a href="../fi/boende-nara-ven/" hreflang="fi" lang="fi">Suomi</a></li><li><a href="../de/boende-nara-ven/" hreflang="de" lang="de">Deutsch</a></li><li><a href="../nl/boende-nara-ven/" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../fr/boende-nara-ven/" hreflang="fr" lang="fr">Français</a></li><li><a href="../es/boende-nara-ven/" hreflang="es" lang="es">Español</a></li><li><a href="../it/boende-nara-ven/" hreflang="it" lang="it">Italiano</a></li></ul></details></div>
-</div></div>
+</div></aside>
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="../" aria-label="Gammeleksgården, till startsidan">
@@ -85,10 +88,10 @@
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Så gör du</p><h2>En dag på Ven från Gammeleksgården</h2></div>
     <ol class="steps">
-      <li><h4>Kör till Landskrona</h4><p>Ungefär 10 km och en kvart från gården till Skeppsbron. Parkera vid terminalen.</p></li>
-      <li><h4>Ta båten</h4><p>Knappt en halvtimme över till Bäckviken. Köp biljett online hos Ventrafiken i förväg, särskilt på sommaren.</p></li>
-      <li><h4>Hyr cykel</h4><p>Cyklar finns att hyra vid hamnen. Ön är liten nog att cykla runt på en dag.</p></li>
-      <li><h4>Hem till gården</h4><p>Ta en runda minigolf i kvällssolen och sov gott. Utcheckning först kl. 11.</p></li>
+      <li><h3>Kör till Landskrona</h3><p>Ungefär 10 km och en kvart från gården till Skeppsbron. Parkera vid terminalen.</p></li>
+      <li><h3>Ta båten</h3><p>Knappt en halvtimme över till Bäckviken. Köp biljett online hos Ventrafiken i förväg, särskilt på sommaren.</p></li>
+      <li><h3>Hyr cykel</h3><p>Cyklar finns att hyra vid hamnen. Ön är liten nog att cykla runt på en dag.</p></li>
+      <li><h3>Hem till gården</h3><p>Ta en runda minigolf i kvällssolen och sov gott. Utcheckning först kl. 11.</p></li>
     </ol>
   </div>
 </section>
@@ -165,7 +168,7 @@
 </footer>
 <div class="mobile-book"><a class="btn btn-ghost" style="color:var(--linen)" href="tel:+46735052445">Ring</a><a class="btn btn-brass" href="../boka/">Boka rum</a></div>
 <script type="application/json" id="t">{"sending":"Skickar…","retry":"Försök igen","sendError":"Det gick inte att skicka just nu. Försök igen eller ring 073-505 24 45.","max":"Max","guest":"gäst","guests":"gäster","night":"natt","nights":"nätter","for":"för","chooseRoom":"Välj rum","copied":"Kopierat"}</script>
-<script src="../js/main.js?v=muy5pmp0" defer></script>
+<script src="../js/main.js?v=r1116" defer></script>
 <script src="https://cdn.usefathom.com/script.js" data-site="CBINBQJR" defer></script>
 </body>
 </html>

@@ -341,7 +341,7 @@ em.brass, .italic { font-family: var(--font-serif); font-style: italic; }
 .steps li { counter-increment: step; display: grid; gap: 0.5rem; align-content: start; }
 .steps li::before { content: counter(step); font-family: var(--font-display); font-size: 2.6rem; line-height: 1; color: var(--accent-ink); }
 .band .steps li::before { color: var(--gold); }
-.steps h4 { font-size: var(--step-1); }
+.steps h3, .steps h4 { font-size: var(--step-1); font-family: var(--font-serif); }
 .steps p { color: var(--muted); font-size: 0.97rem; }
 .band .steps p { color: var(--band-muted); }
 
@@ -470,7 +470,7 @@ body { line-height: 1.65; }
 .hero-film .wrap { z-index: 1; grid-template-columns: minmax(0, 40rem); }
 .hero-film .lede { color: #E9E4D8; }
 @media (max-width: 700px) { .hero-film::before { background: linear-gradient(0deg, rgba(20,30,24,0.9) 20%, rgba(20,30,24,0.55) 100%); } }
-@media (prefers-reduced-motion: reduce) { .hero-film .hero-bg { display: none; } .hero-film { background: #1a2620 url("../assets/video/hero-poster.jpg") center 35% / cover; } }
+@media (prefers-reduced-motion: reduce) { .hero-film .hero-video, .hero-film .hero-pause { display: none !important; } }
 
 /* Språkväljare i toppraden */
 .lang-menu { position: relative; }
@@ -493,3 +493,43 @@ html.nav-collapsed .nav .btn { margin: 0.75rem 0 0; text-align: center; justify-
 .ph.photo { position: relative; }
 .ph.photo .credit { display: block; width: auto; height: auto; text-align: right; position: absolute; right: 0; bottom: 0; max-width: 100%; padding: .2rem .5rem; font: 400 .68rem/1.3 var(--ui, system-ui, sans-serif); color: #fff; background: rgba(0,0,0,.45); border-top-left-radius: 3px; }
 .ph.photo .credit a { display: inline; color: inherit; }
+
+/* Granskning nov 2026: hero med stillbild som laddas först, film som startar efter sidan, tonen ovanpå filmen och pausknapp */
+.hero-film .hero-bg { z-index: 0; }
+.hero-film .hero-poster img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+.hero-film .hero-video { opacity: 0; transition: opacity .8s ease; }
+.hero-film .hero-video.is-playing { opacity: 1; }
+.hero-film::before { z-index: 1; }
+.hero-film .wrap { z-index: 2; }
+.hero-pause { position: absolute; z-index: 3; right: max(var(--gutter, 1rem), 1rem); bottom: 1rem; display: inline-flex; align-items: center; gap: .5rem; padding: .45rem .8rem; font: 500 .85rem/1 var(--font-ui); color: var(--linen); background: rgba(20,30,24,.72); border: 1px solid rgba(210,176,124,.6); border-radius: 999px; cursor: pointer; }
+.hero-pause:hover { border-color: var(--gold); color: var(--gold); }
+.hero-pause-icon { width: .7rem; height: .8rem; border-left: 3px solid currentColor; border-right: 3px solid currentColor; }
+.hero-pause[aria-pressed="true"] .hero-pause-icon { border-right: 0; border-left: .7rem solid currentColor; border-top: .4rem solid transparent; border-bottom: .4rem solid transparent; width: 0; height: 0; }
+
+/* Kontrast och fokus (WCAG 1.4.1, 1.4.3, 1.4.11) */
+.nav a.btn-brass, .nav a.btn-brass:hover { color: #1B2620; border-bottom-color: transparent; }
+.topbar a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(210,176,124,.7); }
+:root:not([data-theme="dark"]) { --focus: #7E5F30; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --focus: #D2B07C; } }
+.band, .hero, .site-header, .topbar, .site-footer, .lang-menu ul { --focus: #D2B07C; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; box-shadow: 0 0 0 5px rgba(255,253,248,.35); }
+html { scroll-padding-top: 6rem; scroll-padding-bottom: 5rem; }
+
+/* Smala skärmar, 320 px (WCAG 1.4.10) */
+@media (max-width: 360px) { .brand { gap: .5rem; } .brand .wordmark { width: 130px; } .brand .seal { width: 34px; height: 34px; } .nav-toggle { padding: .4rem .55rem; } .site-header .wrap { gap: .75rem; } }
+.quotes-source { margin-top: 1.5rem; color: var(--band-muted); max-width: 48rem; }
+.quotes-source a { color: var(--band-fg); }
+.nearby { display: grid; gap: 1.25rem 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); margin: 0; }
+.nearby div { border-top: 1px solid var(--line); padding-top: .9rem; }
+.nearby dt { font-family: var(--font-serif); font-size: var(--step-1); margin-bottom: .25rem; }
+.nearby dd { margin: 0; color: var(--muted); }
+.split > *, .grid-3 > *, .grid-4 > * { min-width: 0; }
+h1, h2, h3, .lede { overflow-wrap: break-word; hyphens: auto; }
+@media (max-width: 360px) { .distances li { flex-wrap: wrap; gap: 0 .75rem; } }
+.stack, .stack-lg { grid-template-columns: minmax(0, 1fr); }
+.textlink { white-space: normal; }
+@media (max-width: 400px) { .bookbar { grid-template-columns: minmax(0,1fr); } .bookbar .field { border-right: 0; border-bottom: 1px solid var(--line); } .bookbar .field input, .bookbar .field select { min-width: 0; width: 100%; } .room-pick, .room-opt { min-width: 0; } }
+fieldset { min-width: 0; }
+.booking > * { min-width: 0; }
+@media (max-width: 900px) { .booking { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 400px) { .summary { padding: 1.1rem; } .summary dl div { flex-wrap: wrap; gap: 0 .75rem; } .summary dd { white-space: normal; } }
