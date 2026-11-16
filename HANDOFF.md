@@ -82,7 +82,7 @@ Gör ingenting av detta förrän ägaren av GammelEksGården sagt ja.
 - **Drönarfilmen saknas:** startsidan och rundtursidan (alla språk) visar en videospelare med `assets/img/flyover.mp4`, men filen finns inte i repot.
   Lägg in filen (eller peka om till `assets/video/`) och lägg tillbaka `VideoObject` med rätt `contentUrl` och verkligt uppladdningsdatum.
 - 360°-rundturen är en platshållare ("bäddas in efter fotograferingen"), medan rundturens meta-text lovar 360°. Byt texten eller lägg in rundturen före lansering.
-- Integritetssidan nämner bara GoatCounter, men Fathom finns också på alla sidor sedan PR #1. Texten behöver beslut från Daniel.
+- Besöksstatistik: bara Fathom (site CBINBQJR). GoatCounter är borttaget från alla sidor och integritetssidorna nämner Fathom (16 nov 2026).
 - 404-sidans språkväljare länkar till `en/404` och så vidare, adresser som inte finns. Påverkar inte SEO (sidan har noindex) men bör rättas i generatorn.
 - 136 title är längre än cirka 60 tecken och kan kortas i sökresultaten. De är unika och lämnade orörda. Korta dem gärna i generatorn, till exempel genom att ta bort " | Gammeleksgården" på undersidor.
 - Koordinaterna 55.922, 12.844 har tre decimaler. Stäm av mot Google Maps-pinnen vid lansering.
