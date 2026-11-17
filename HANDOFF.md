@@ -73,6 +73,16 @@ Rapport och mätdata: projektmappen `geg-hotel/teknisk-jamforelse/`.
 - **Omdirigeringar:** `_redirects` och `lansering/omdirigeringar-geghotel.csv` följer nu geghotel.se:s verkliga sitemap (13 sidor) plus policy- och kontaktlänkar. Exemplet för .htaccess ovan är äldre; använd CSV:n. Gäller oavsett namnval: behålls namnet GEG Hotel och sajten läggs på geghotel.se behövs samma sökvägar.
 - Testat: `verktyg/seo.py kontroll` "Inga fel" (212 sidor), axe 0 fel på 17 sidor i ljust och mörkt läge, Lighthouse lokalt startsidan mobil 74 → 96 (LCP 5,6 → 2,7 s).
 
+## Gjort 17 nov 2026 (360°-bilderna inbyggda)
+
+- **Visare:** Pannellum 2.5.6 (MIT) på egen server i `assets/pano/` (licens bredvid). Inget hämtas förrän besökaren klickar på "Gå runt i 360°"; sidan visar en vanlig stillbild (`assets/img/pano-<id>-800/1600`) tills dess. Bilderna finns i två storlekar, `<id>-2048.jpg` (mobil) och `<id>-4096.jpg` (stora skärmar med stöd för det). Bara en visning är igång åt gången. Pilar mellan vyerna och startvinklar ligger i `js/main.js` (LINKS), samma som i rundturen från fotograferingen.
+- **Var:** startsidan (gården), rumsöversikten (ny sektion `#rumstyper` med de fyra sängupplägg, rum 10/9/7/6, ritning nere/loft och en visning per typ), varje rumssida (rum, loft, badrum), fest (festlokalen), bröllop, företag (rum 6), långtidsboende (gästköket), minigolf och rundtursidan (hela gården, alla vyer). Drönarstillbilder (`fran-luften-*`) på Upptäck, i galleriet och på rundtursidan.
+- **Texter:** `verktyg/rundturer_text.py` (alla tio språk, maskinöversatta). Bygget: `python3 verktyg/rundturer.py` hoppar över sidor som redan har en visning. Varje sida får `<script id="pano-t">` med sina scentexter.
+- **CSP:** `img-src` har nu `blob:` (Pannellum laddar bilden som blob) i alla sidor och i `_headers`.
+- **Rättat på köpet:** rumssidornas bokningsruta låg i två kolumner även på mobil (inline-stil vann över mediefrågan), så texten i vänsterspalten blev 0 px bred. Nu en spalt under 900 px.
+- 360°-materialet är bara för webbplatsen, aldrig för Google. Den dukade 360°-bilden av stora salen finns inte med (den låg bara på Daniels Mac); läggs in som märkt illustration om den ska med.
+- Testat: `verktyg/seo.py kontroll` "Inga fel" (212 sidor). Lighthouse lokalt mobil: startsidan 96, rum 96, fest 97, rumssida 98; tillgänglighet 100. Inga CSP- eller skriptfel när visningarna startas på sv, en, de, fr, it, nb, fi.
+
 ## Lanseringschecklista (upprättad 26 okt 2026)
 
 Gör ingenting av detta förrän ägaren av GammelEksGården sagt ja.
@@ -95,7 +105,7 @@ Gör ingenting av detta förrän ägaren av GammelEksGården sagt ja.
 
 - ~~Drönarfilmen saknas~~ Finns sedan 16 nov som `assets/video/flyover.mp4` (3,6 MB).
   Lägg in filen (eller peka om till `assets/video/`) och lägg tillbaka `VideoObject` med rätt `contentUrl` och verkligt uppladdningsdatum.
-- 360°-rundturen är en platshållare ("bäddas in efter fotograferingen"), medan rundturens meta-text lovar 360°. Byt texten eller lägg in rundturen före lansering.
+- ~~360°-rundturen är en platshållare~~ Inbyggd 17 nov.
 - Besöksstatistik: bara Fathom (site CBINBQJR). GoatCounter är borttaget från alla sidor och integritetssidorna nämner Fathom (16 nov 2026).
 - 404-sidans språkväljare länkar till `en/404` och så vidare, adresser som inte finns. Påverkar inte SEO (sidan har noindex) men bör rättas i generatorn.
 - 136 title är längre än cirka 60 tecken och kan kortas i sökresultaten. De är unika och lämnade orörda. Korta dem gärna i generatorn, till exempel genom att ta bort " | Gammeleksgården" på undersidor.

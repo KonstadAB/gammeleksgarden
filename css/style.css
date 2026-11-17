@@ -531,5 +531,45 @@ h1, h2, h3, .lede { overflow-wrap: break-word; hyphens: auto; }
 @media (max-width: 400px) { .bookbar { grid-template-columns: minmax(0,1fr); } .bookbar .field { border-right: 0; border-bottom: 1px solid var(--line); } .bookbar .field input, .bookbar .field select { min-width: 0; width: 100%; } .room-pick, .room-opt { min-width: 0; } }
 fieldset { min-width: 0; }
 .booking > * { min-width: 0; }
-@media (max-width: 900px) { .booking { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 900px) { .booking { grid-template-columns: minmax(0, 1fr) !important; } }
 @media (max-width: 400px) { .summary { padding: 1.1rem; } .summary dl div { flex-wrap: wrap; gap: 0 .75rem; } .summary dd { white-space: normal; } }
+
+/* 360°-visningar (Pannellum laddas vid klick) */
+.pano-wrap { display: grid; gap: 0.75rem; min-width: 0; }
+.pano { position: relative; aspect-ratio: 16 / 9; background: var(--green); overflow: hidden; border: 1px solid rgba(210,176,124,0.35); }
+@media (max-width: 600px) { .pano { aspect-ratio: 4 / 3; } }
+.pano picture, .pano picture img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pano-start { position: absolute; inset: 0; width: 100%; display: grid; place-items: center; border: 0; padding: 0; cursor: pointer; background: linear-gradient(0deg, rgba(23,34,28,0.55), rgba(23,34,28,0.05) 60%); color: #fff; }
+.pano-btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.8rem 1.3rem; background: var(--brass); color: #1B2620; font: 600 0.95rem/1.2 var(--font-ui); letter-spacing: 0.02em; border-radius: var(--radius); box-shadow: 0 6px 24px rgba(0,0,0,0.25); }
+.pano-start:hover .pano-btn, .pano-start:focus-visible .pano-btn { background: var(--gold); }
+.pano-start:focus-visible { outline: 3px solid var(--gold); outline-offset: -3px; }
+.pano.is-loading .pano-start { cursor: progress; }
+.pano-view { position: absolute; inset: 0; z-index: 0; }
+.pano-start { z-index: 2; }
+.pano picture { z-index: 1; }
+.pano.is-on .pano-start, .pano.is-on picture { display: none; }
+.pano-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.pano-chips button { font: 500 0.85rem/1.2 var(--font-ui); padding: 0.45rem 0.8rem; min-height: 2.25rem; border: 1px solid var(--line); background: transparent; color: inherit; border-radius: 999px; cursor: pointer; }
+.pano-chips button:hover { border-color: var(--brass); }
+.pano-chips button[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: var(--linen); }
+.band .pano-chips button { border-color: rgba(210,176,124,0.45); }
+.band .pano-chips button[aria-pressed="true"] { background: var(--brass); border-color: var(--brass); color: #1B2620; }
+.pano-cap { font-size: var(--step--1); margin: 0; }
+.pano-cap strong { font-family: var(--font-ui); font-weight: 600; margin-right: 0.3rem; }
+.pano-hint { font-size: var(--step--1); opacity: 0.8; margin: 0; }
+.pnlm-container { font-family: var(--font-ui); }
+.pnlm-tooltip span { font-family: var(--font-ui); }
+/* Rumstyperna */
+.cat-grid { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); }
+.cat { display: grid; gap: 1rem; align-content: start; min-width: 0; }
+.cat-title { display: flex; align-items: baseline; gap: 0.7rem; font-size: var(--step-1); margin: 0; }
+.cat-no { flex: none; display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--green); color: var(--linen); font: 600 1rem var(--font-ui); transform: translateY(-0.1rem); }
+.cat-plan { display: flex; gap: 1.25rem; align-items: center; }
+.bed-plan { flex: none; width: 6.5rem; height: auto; color: var(--fg); }
+.bp-house, .bp-ladder { fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
+.bp-floor { fill: none; stroke: currentColor; stroke-width: 2; }
+.bp-beds rect { fill: var(--brass); }
+.cat-dl { display: grid; grid-template-columns: auto 1fr; gap: 0.2rem 0.9rem; margin: 0; font-size: var(--step--1); }
+.cat-dl div { display: contents; }
+.cat-dl dt { color: var(--muted); }
+.cat-dl dd { margin: 0; font-weight: 600; }
