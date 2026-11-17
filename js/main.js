@@ -234,3 +234,95 @@
   window.addEventListener("resize", fit);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
 })();
+
+// 360°-visningar. Pannellum (MIT, egen server) och bilderna hämtas först när besökaren klickar.
+(function () {
+  var boxes = document.querySelectorAll(".pano");
+  if (!boxes.length) return;
+  var PT = { ui: {}, s: {} };
+  try { PT = JSON.parse(document.getElementById("pano-t").textContent); } catch (e) {}
+  // Pilar mellan vyerna: [till, riktning i grader, lutning]. Samma som i rundturen från fotograferingen.
+  var LINKS = {
+    "01": [["02", -4], ["27", -41]], "02": [["04", 137], ["01", -43], ["03", 20], ["05", 47, 1]],
+    "03": [["02", -173], ["04", -160, 6], ["05", 140, 4]], "04": [["05", -40, -6], ["03", -178, -4], ["02", 169]],
+    "05": [["04", -101], ["06", 167.5, -3], ["09", 174.5, -3], ["12", 181.5, -3], ["15", 188.5, -3], ["22", -3, -9], ["18", 9, 2]],
+    "06": [["05", -94], ["09", -94, 10], ["07", 94], ["08", 88, 25]], "07": [["08", 124], ["06", -95]], "08": [["07", -93], ["06", -60, -30]],
+    "09": [["10", -97], ["05", 82], ["06", 88, 10], ["12", 76, 10], ["11", -75, 25]], "10": [["09", 104], ["11", -139]], "11": [["10", 97], ["09", 60, -30]],
+    "12": [["13", -95], ["05", 82], ["09", 88, 10], ["15", 76, 10], ["14", -75, 25]], "13": [["14", -137], ["12", 95]], "14": [["13", 91], ["12", 60, -30]],
+    "15": [["16", 98], ["05", -86], ["12", -86, 10], ["17", 70, 25]], "16": [["15", -94], ["17", 116]], "17": [["16", -96], ["15", -60, -30]],
+    "18": [["27", 87]], "22": [["27", -100], ["23", 43]], "23": [["24", 60], ["22", -159], ["26", -81]], "24": [["23", -107], ["25", -10]],
+    "25": [["24", -114]], "26": [["23", -132], ["27", 0, -4]], "27": [["28", 76, -4], ["26", -78, -4], ["18", -129], ["22", 10]],
+    "28": [["27", 153], ["29", 58]], "29": [["28", -163]]
+  };
+  var YAW = { "01": -45, "03": 95, "05": 130, "27": 45 }, VIA = { "27>28": "29", "29>28": "27" };
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var lib = null, active = null, maxTex = null;
+
+  function loadLib(base) {
+    if (lib) return lib;
+    lib = new Promise(function (ok, fail) {
+      var l = document.createElement("link"); l.rel = "stylesheet"; l.href = base + "pannellum.css?v=256"; document.head.appendChild(l);
+      var s = document.createElement("script"); s.src = base + "pannellum.js?v=256"; s.onload = ok; s.onerror = function () { lib = null; fail(); };
+      document.head.appendChild(s);
+    });
+    return lib;
+  }
+  function size() {
+    if (maxTex === null) {
+      try { var gl = document.createElement("canvas").getContext("webgl"); maxTex = gl ? gl.getParameter(gl.MAX_TEXTURE_SIZE) : 0; } catch (e) { maxTex = 0; }
+    }
+    var px = Math.max(screen.width, screen.height) * (window.devicePixelRatio || 1);
+    return maxTex >= 4096 && px > 1400 ? 4096 : 2048;
+  }
+  function txt(id) { return PT.s[id] || [id, ""]; }
+
+  Array.prototype.forEach.call(boxes, function (box) {
+    var wrap = box.parentNode, ids = box.getAttribute("data-scenes").split(","), base = box.getAttribute("data-base");
+    var btn = box.querySelector(".pano-start"), view = box.querySelector(".pano-view");
+    var cap = wrap.querySelector(".pano-cap"), hint = wrap.querySelector(".pano-hint"), chips = wrap.querySelectorAll(".pano-chips button");
+    var label = btn.querySelector(".pano-btn"), labelHTML = label.innerHTML;
+    var inst = { viewer: null, stop: stop };
+
+    function mark(id) {
+      var t = txt(id);
+      cap.querySelector("strong").textContent = t[0];
+      cap.querySelector("span").textContent = t[1];
+      box.setAttribute("aria-label", box.getAttribute("aria-label").split(":")[0] + ": " + t[0]);
+      Array.prototype.forEach.call(chips, function (c) { c.setAttribute("aria-pressed", c.getAttribute("data-scene") === id ? "true" : "false"); });
+    }
+    function stop() {
+      if (inst.viewer) { try { inst.viewer.destroy(); } catch (e) {} inst.viewer = null; }
+      box.classList.remove("is-on", "is-loading"); label.innerHTML = labelHTML; hint.hidden = true;
+    }
+    function start(first) {
+      if (inst.viewer) { inst.viewer.loadScene(first); return; }
+      if (active && active !== inst) active.stop();
+      active = inst;
+      box.classList.add("is-loading"); label.textContent = PT.ui.loading || "…";
+      loadLib(base).then(function () {
+        var px = size(), portrait = box.clientHeight > box.clientWidth, scenes = {};
+        ids.forEach(function (id) {
+          var hs = [];
+          (LINKS[id] || []).forEach(function (l) {
+            var to = ids.indexOf(l[0]) >= 0 ? l[0] : VIA[id + ">" + l[0]];
+            if (!to || ids.indexOf(to) < 0) return;
+            hs.push({ type: "scene", sceneId: to, yaw: l[1], pitch: l[2] == null ? -8 : l[2], text: txt(to)[0] });
+          });
+          scenes[id] = { type: "equirectangular", panorama: base + id + "-" + px + ".jpg", yaw: YAW[id] || 0, hfov: portrait ? 75 : 100, hotSpots: hs };
+        });
+        inst.viewer = window.pannellum.viewer(view, {
+          "default": { firstScene: first, sceneFadeDuration: reduce ? 0 : 600, autoLoad: true, autoRotate: reduce ? 0 : -2, compass: false, showFullscreenCtrl: true,
+            strings: { loadingLabel: PT.ui.loading || "…", genericWebGLError: PT.ui.err || "", unknownError: PT.ui.err || "" } },
+          scenes: scenes
+        });
+        inst.viewer.on("load", function () { box.classList.remove("is-loading"); box.classList.add("is-on"); hint.hidden = false; });
+        inst.viewer.on("scenechange", mark);
+        inst.viewer.on("error", function () { box.classList.remove("is-loading"); label.textContent = PT.ui.err || ""; });
+        box.classList.add("is-on");
+        mark(first);
+      }, function () { box.classList.remove("is-loading"); label.textContent = PT.ui.err || ""; });
+    }
+    btn.addEventListener("click", function () { start(box.getAttribute("data-first")); view.focus(); });
+    Array.prototype.forEach.call(chips, function (c) { c.addEventListener("click", function () { start(c.getAttribute("data-scene")); }); });
+  });
+})();
