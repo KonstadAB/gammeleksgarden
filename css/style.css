@@ -573,3 +573,5 @@ fieldset { min-width: 0; }
 .cat-dl div { display: contents; }
 .cat-dl dt { color: var(--muted); }
 .cat-dl dd { margin: 0; font-weight: 600; }
+.shot { margin: 0; }
+.shot img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }

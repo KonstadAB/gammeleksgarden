@@ -19,7 +19,7 @@ from rundturer_text import (BEDS, CAP_BATH, CAP_LOFT, CAP_MAIN, CAT_TITLE, CATS,
                             ROOM, ROOMS, SCENES, SEC, TYPE_ROOM, UI)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-POSTERS = {"01", "04", "05", "06", "09", "12", "15", "22", "29"}
+POSTERS = {"01", "04", "05", "06", "09", "12", "15", "22", "26d", "29"}
 e = lambda s: html.escape(s, quote=True)
 
 
@@ -272,7 +272,7 @@ def do_rundtur(lang):
     p.sub(r'(<div class="stack"><p class="eyebrow">[^<]*</p><h1>)[^<]*(</h1>)', lambda m: m.group(1) + e(SEC["tour_h1"][lang]) + m.group(2))
     # Drönarfilmen saknade källa på den här sidan.
     p.s = re.sub(r'(<video controls muted playsinline preload="none" poster="[^"]*">)(?!<source)', lambda m: m.group(1) + f'<source src="{p.rel}assets/video/flyover.mp4" type="video/mp4">', p.s)
-    figs = "".join(f'<figure class="stack">{picture(p.rel, "fran-luften-" + k, DRONE[k][lang], sizes="(min-width: 900px) 25vw, 50vw", w=1600, h=1200)}'
+    figs = "".join(f'<figure class="stack shot">{picture(p.rel, "fran-luften-" + k, DRONE[k][lang], sizes="(min-width: 900px) 25vw, 50vw", w=1600, h=1200)}'
                    f'<figcaption class="small muted">{e(DRONE[k][lang])}</figcaption></figure>' for k in ("01", "13", "03", "22"))
     block = (f'<section class="section">\n  <div class="wrap stack-lg">\n    <div class="section-head"><p class="eyebrow">{e(SEC["above"][lang])}</p>'
              f'<h2>{e(SEC["above_h2"][lang])}</h2></div>\n    <div class="grid-4">{figs}</div>\n    <a class="textlink" href="{p.rel}galleri/">{e(SEC["more_photos"][lang])}</a>\n  </div>\n</section>\n')

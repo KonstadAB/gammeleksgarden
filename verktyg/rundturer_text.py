@@ -345,3 +345,57 @@ DRONE = {
             "De gebouwen van de feestzaal rond het terras, vanuit de lucht", "Les bâtiments de la salle des fêtes autour de la terrasse, vus du ciel",
             "Los edificios del salón de fiestas alrededor de la terraza, vistos desde el aire", "Gli edifici della sala feste intorno alla terrazza, visti dall'alto"),
 }
+
+# Dukade bilder (AI-dukade foton av lokalen). Märks alltid som illustration.
+SCENES["26d"] = (
+    L("Stora salen, dukad (illustration)", "Main hall, set for dinner (illustration)", "Den store sal, dækket op (illustration)",
+      "Den store salen, dekket (illustrasjon)", "Iso sali katettuna (kuvitus)", "Großer Saal, eingedeckt (Illustration)",
+      "Grote zaal, gedekt (illustratie)", "Grande salle dressée (illustration)", "Sala grande preparada (ilustración)", "Salone apparecchiato (illustrazione)"),
+    L("Salen digitalt dukad för middag, så som den kan se ut på er fest. Resten av rummet är som på fotot.",
+      "The hall digitally set for dinner, as it could look at your party. The rest of the room is as photographed.",
+      "Salen digitalt dækket op til middag, sådan som den kan se ud til jeres fest. Resten af rummet er som på fotoet.",
+      "Salen digitalt dekket til middag, slik den kan se ut på festen deres. Resten av rommet er som på bildet.",
+      "Sali digitaalisesti katettuna illalliselle, sellaisena kuin se voi näyttää juhlissanne. Muu huone on kuten kuvassa.",
+      "Der Saal digital für ein Essen eingedeckt, so wie er bei eurer Feier aussehen kann. Der Rest des Raums ist wie fotografiert.",
+      "De zaal digitaal gedekt voor een diner, zoals hij er op jullie feest uit kan zien. De rest van de ruimte is zoals gefotografeerd.",
+      "La salle dressée numériquement pour un dîner, telle qu'elle pourrait être lors de votre fête. Le reste de la pièce est tel que photographié.",
+      "La sala preparada digitalmente para una cena, tal como podría verse en vuestra fiesta. El resto del espacio es como en la foto.",
+      "La sala apparecchiata digitalmente per una cena, come potrebbe essere alla vostra festa. Il resto della stanza è come nella foto."),
+)
+
+DUKAT_H2 = L("Exempel på dukning", "Table setting examples", "Eksempler på borddækning", "Eksempler på borddekking", "Esimerkkejä kattauksista",
+             "Beispiele für Eindeckungen", "Voorbeelden van gedekte tafels", "Exemples de mise en place", "Ejemplos de montaje", "Esempi di allestimento")
+DUKAT_NOTE = L("Illustrationer: våra egna foton av lokalen, digitalt dukade för att visa hur det kan se ut. Ni dukar och pyntar själva eller med catering.",
+               "Illustrations: our own photos of the venue, digitally set to show how it could look. You set and decorate yourselves or with a caterer.",
+               "Illustrationer: vores egne fotos af lokalet, digitalt dækket op for at vise, hvordan det kan se ud. I dækker og pynter selv eller med catering.",
+               "Illustrasjoner: våre egne bilder av lokalet, digitalt dekket for å vise hvordan det kan se ut. Dere dekker og pynter selv eller med catering.",
+               "Kuvitukset: omia valokuviamme tilasta, digitaalisesti katettuina näyttämään, miltä se voi näyttää. Kattaatte ja koristelette itse tai pitopalvelun kanssa.",
+               "Illustrationen: unsere eigenen Fotos der Räume, digital eingedeckt, um zu zeigen, wie es aussehen kann. Ihr deckt und dekoriert selbst oder mit Catering.",
+               "Illustraties: onze eigen foto's van de locatie, digitaal gedekt om te laten zien hoe het eruit kan zien. Jullie dekken en versieren zelf of met catering.",
+               "Illustrations : nos propres photos de la salle, dressées numériquement pour montrer le rendu possible. Vous dressez et décorez vous-mêmes ou avec un traiteur.",
+               "Ilustraciones: nuestras propias fotos del local, preparadas digitalmente para mostrar cómo podría quedar. Vosotros montáis y decoráis, o con un catering.",
+               "Illustrazioni: nostre foto del locale, allestite digitalmente per mostrare come potrebbe essere. Allestite e decorate voi o con un catering.")
+ILL = L("illustration", "illustration", "illustration", "illustrasjon", "kuvitus", "Illustration", "illustratie", "illustration", "ilustración", "illustrazione")
+DUKAT = {
+    "02": L("Stora salen dukad för bröllop", "The main hall set for a wedding", "Den store sal dækket op til bryllup", "Den store salen dekket til bryllup",
+            "Iso sali katettuna häihin", "Der große Saal für eine Hochzeit eingedeckt", "De grote zaal gedekt voor een bruiloft", "La grande salle dressée pour un mariage",
+            "La sala grande preparada para una boda", "Il salone allestito per un matrimonio"),
+    "12": L("Stora salen dukad för 50-årsfest", "The main hall set for a 50th birthday", "Den store sal dækket op til 50-årsfest", "Den store salen dekket til 50-årsdag",
+            "Iso sali katettuna 50-vuotisjuhliin", "Der große Saal für einen 50. Geburtstag eingedeckt", "De grote zaal gedekt voor een 50ste verjaardag",
+            "La grande salle dressée pour un 50e anniversaire", "La sala grande preparada para un 50 cumpleaños", "Il salone allestito per un 50° compleanno"),
+    "11": L("Stora salen dukad för företagsmiddag", "The main hall set for a company dinner", "Den store sal dækket op til firmamiddag", "Den store salen dekket til firmamiddag",
+            "Iso sali katettuna yritysillalliselle", "Der große Saal für ein Firmenessen eingedeckt", "De grote zaal gedekt voor een bedrijfsdiner",
+            "La grande salle dressée pour un dîner d'entreprise", "La sala grande preparada para una cena de empresa", "Il salone allestito per una cena aziendale"),
+    "10": L("Stora salen dukad för julbord", "The main hall set for a Christmas buffet", "Den store sal dækket op til julefrokost", "Den store salen dekket til julebord",
+            "Iso sali katettuna joulupöytään", "Der große Saal für ein Weihnachtsbuffet eingedeckt", "De grote zaal gedekt voor een kerstbuffet",
+            "La grande salle dressée pour un buffet de Noël", "La sala grande preparada para un bufé navideño", "Il salone allestito per un buffet di Natale"),
+    "06": L("Terrassen dukad en sommarkväll", "The terrace set on a summer evening", "Terrassen dækket op en sommeraften", "Terrassen dekket en sommerkveld",
+            "Terassi katettuna kesäiltana", "Die Terrasse an einem Sommerabend eingedeckt", "Het terras gedekt op een zomeravond", "La terrasse dressée un soir d'été",
+            "La terraza preparada una noche de verano", "La terrazza apparecchiata in una sera d'estate"),
+    "08": L("Buffé i matsalen", "Buffet in the dining room", "Buffet i spisesalen", "Buffet i spisesalen", "Noutopöytä ruokasalissa", "Buffet im Speisesaal",
+            "Buffet in de eetzaal", "Buffet dans la salle à manger", "Bufé en el comedor", "Buffet nella sala da pranzo"),
+    "07": L("Långbord under pergolan", "Long table under the pergola", "Langbord under pergolaen", "Langbord under pergolaen", "Pitkä pöytä pergolan alla",
+            "Lange Tafel unter der Pergola", "Lange tafel onder de pergola", "Grande tablée sous la pergola", "Mesa larga bajo la pérgola", "Tavolata sotto il pergolato"),
+    "13": L("Brunch i matsalen", "Brunch in the dining room", "Brunch i spisesalen", "Brunsj i spisesalen", "Brunssi ruokasalissa", "Brunch im Speisesaal",
+            "Brunch in de eetzaal", "Brunch dans la salle à manger", "Brunch en el comedor", "Brunch nella sala da pranzo"),
+}
