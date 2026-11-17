@@ -80,7 +80,8 @@ Rapport och mätdata: projektmappen `geg-hotel/teknisk-jamforelse/`.
 - **Texter:** `verktyg/rundturer_text.py` (alla tio språk, maskinöversatta). Bygget: `python3 verktyg/rundturer.py` hoppar över sidor som redan har en visning. Varje sida får `<script id="pano-t">` med sina scentexter.
 - **CSP:** `img-src` har nu `blob:` (Pannellum laddar bilden som blob) i alla sidor och i `_headers`.
 - **Rättat på köpet:** rumssidornas bokningsruta låg i två kolumner även på mobil (inline-stil vann över mediefrågan), så texten i vänsterspalten blev 0 px bred. Nu en spalt under 900 px.
-- 360°-materialet är bara för webbplatsen, aldrig för Google. Den dukade 360°-bilden av stora salen finns inte med (den låg bara på Daniels Mac); läggs in som märkt illustration om den ska med.
+- 360°-materialet är bara för webbplatsen, aldrig för Google.
+- **Dukade bilder (17 nov, senare):** den digitalt dukade 360°-bilden av stora salen (`26d`) finns i fest- och bröllopsvisningarna (bröllop startar där), och åtta dukade foton (`assets/img/dukat-*`) visas under "Exempel på dukning" på fest och bröllop och i galleriet (Fest). Allt märks "illustration". Bygget: `python3 verktyg/dukat.py`. Aldrig på Google, Booking eller Hotels.com.
 - Testat: `verktyg/seo.py kontroll` "Inga fel" (212 sidor). Lighthouse lokalt mobil: startsidan 96, rum 96, fest 97, rumssida 98; tillgänglighet 100. Inga CSP- eller skriptfel när visningarna startas på sv, en, de, fr, it, nb, fi.
 
 ## Lanseringschecklista (upprättad 26 okt 2026)
