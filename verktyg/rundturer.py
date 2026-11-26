@@ -4,8 +4,8 @@
 Körs från repots rot: python3 verktyg/rundturer.py
 Sidor som redan har en visning (markören <!--pano:) hoppas över, så skriptet kan köras igen
 efter att nya sidor lagts till. Texterna finns i verktyg/rundturer_text.py.
-Bilderna ligger i assets/pano/<id>-2048.jpg och -4096.jpg (kopior av VR-fotograferingen,
-originalen är orörda). Visaren är Pannellum 2.5.6 (MIT), laddas från egen server först vid klick.
+Sedan 2026-11-26 visas allt i 3DVista-rundturen i /360/ (se verktyg/tredvista.py), som laddas
+först vid klick. Affischbilderna ligger i assets/img/pano-<id>-*.
 360°-materialet är bara för webbplatsen, aldrig för Google.
 """
 import html
@@ -15,6 +15,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
+from tredvista import full_button
 from rundturer_text import (BEDS, CAP_BATH, CAP_LOFT, CAP_MAIN, CAT_TITLE, CATS, CHIP, DRONE, DT, LANGS,
                             ROOM, ROOMS, SCENES, SEC, TYPE_ROOM, UI)
 
@@ -69,10 +70,10 @@ class Page:
                      for s, lbl in ((s, self.chip_label(s, scenes)) for s in chips))
         alt = f"{pt}. {pc}" if pc else pt
         return (f'<!--pano:{key}--><div class="pano-wrap">'
-                f'<div class="pano" data-scenes="{",".join(scenes)}" data-first="{first}" data-base="{rel}assets/pano/" role="region" aria-label="{e(UI["region"][lang])}: {e(t)}">'
+                f'<div class="pano" data-scenes="{",".join(scenes)}" data-first="{first}" data-tour="{rel}360/" role="region" aria-label="{e(UI["region"][lang])}: {e(t)}">'
                 f'{picture(rel, "pano-" + poster, alt)}'
                 f'<button type="button" class="pano-start"><span class="pano-btn">{e(UI["start"][lang])}</span></button>'
-                f'<div class="pano-view"></div></div>'
+                f'<div class="pano-view"></div>{full_button(lang)}</div>'
                 f'<div class="pano-chips" role="group" aria-label="{e(UI["views"][lang])}">{cb}</div>'
                 f'<p class="pano-cap" aria-live="polite"><strong>{e(t)}</strong> <span>{e(c)}</span></p>'
                 f'<p class="pano-hint" hidden>{e(UI["hint"][lang])}</p>'
