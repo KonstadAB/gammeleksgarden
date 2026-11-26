@@ -73,6 +73,14 @@ Rapport och mätdata: projektmappen `geg-hotel/teknisk-jamforelse/`.
 - **Omdirigeringar:** `_redirects` och `lansering/omdirigeringar-geghotel.csv` följer nu geghotel.se:s verkliga sitemap (13 sidor) plus policy- och kontaktlänkar. Exemplet för .htaccess ovan är äldre; använd CSV:n. Gäller oavsett namnval: behålls namnet GEG Hotel och sajten läggs på geghotel.se behövs samma sökvägar.
 - Testat: `verktyg/seo.py kontroll` "Inga fel" (212 sidor), axe 0 fel på 17 sidor i ljust och mörkt läge, Lighthouse lokalt startsidan mobil 74 → 96 (LCP 5,6 → 2,7 s).
 
+## Gjort 26 nov 2026 (360° byggt i 3DVista)
+- **Visare:** 3DVista Virtual Tour Pro (Daniels licens). Hela rundturen ligger publicerad i `360/` (ingång `360/index.htm`, 27 vyer, cirka 120 MB med bildrutor i flera upplösningar). Den hämtas först när besökaren klickar på "Gå runt i 360°" och visas i en iframe. `js/main.js` öppnar rätt vy med `#media-name=<namn>` (namnen i `NAME`), och knapparna under bilden byter vy utan att ladda om. Helskärmsknapp uppe till höger.
+- **Projektet** ligger på Daniels Mac: `Hämtade filer/GEG foton/arbetsyta/GEG-rundtur-v3.vtp`, publiceras med Publish → Web / Mobile till `arbetsyta/rundtur-3dvista`, och den mappen kopieras hit som `360/`. Originalbilderna rörs aldrig. Bild 19–21 (kontoren) är inte med.
+- **Pilar, namn och startvyer** läggs in i projektfilen med skript (`/mnt/project-files/geg-hotel/3dvista/build_vtp.py`, samma riktningar som tidigare LINKS). 3DVistas automatiska koppling klarade bara 3 av 26 vyer. Yaw i 3DVista räknas som i Pannellum (0 = bildens mitt, plus åt höger).
+- **Sidorna** byggs om med `python3 verktyg/tredvista.py` (data-tour, helskärmsknapp och ny hjälptext på alla tio språk). Pannellum och `assets/pano/` är borttagna.
+- **`_headers`** har en egen regel för `/360/*` (iframe från egen domän, 3DVistas skript). GitHub Pages läser inte filen, den gäller först vid flytt till Cloudflare/Netlify.
+- Inget av 360°-materialet ska till Google. Publicera aldrig till 3DVista Cloud eller Google Street View från projektet.
+
 ## Gjort 17 nov 2026 (360°-bilderna inbyggda)
 
 - **Visare:** Pannellum 2.5.6 (MIT) på egen server i `assets/pano/` (licens bredvid). Inget hämtas förrän besökaren klickar på "Gå runt i 360°"; sidan visar en vanlig stillbild (`assets/img/pano-<id>-800/1600`) tills dess. Bilderna finns i två storlekar, `<id>-2048.jpg` (mobil) och `<id>-4096.jpg` (stora skärmar med stöd för det). Bara en visning är igång åt gången. Pilar mellan vyerna och startvinklar ligger i `js/main.js` (LINKS), samma som i rundturen från fotograferingen.
