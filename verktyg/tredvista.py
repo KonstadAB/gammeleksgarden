@@ -2,7 +2,7 @@
 """Byter 360°-visningarna från Pannellum till 3DVista-rundturen i /360/, på alla tio språk.
 
 Körs från repots rot: python3 verktyg/tredvista.py (kan köras flera gånger).
-Rundturen byggs i 3DVista på Daniels Mac (projekt GEG foton/arbetsyta/GEG-rundtur-v4.vtp),
+Rundturen byggs i 3DVista på Daniels Mac (projekt GEG foton/arbetsyta/GEG-rundtur-v5.vtp),
 publiceras som "Web / Mobile" till en lokal mapp och kopieras hit som /360/.
 Skyltarna, namnen och startvyerna läggs in i projektfilen med geg-hotel/3dvista/build_vtp.py och build_labels.py.
 360°-materialet är bara för webbplatsen, aldrig för Google.
