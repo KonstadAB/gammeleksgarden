@@ -248,7 +248,7 @@
     "06": "Rum 6", "07": "Rum 6 · Badrummet", "08": "Rum 6 · Loftet", "09": "Rum 7", "10": "Rum 7 · Badrummet", "11": "Rum 7 · Loftet",
     "12": "Rum 9", "13": "Rum 9 · Badrummet", "14": "Rum 9 · Loftet", "15": "Rum 10", "16": "Rum 10 · Badrummet", "17": "Rum 10 · Loftet",
     "18": "Kontorsbyggnaden", "22": "Festlokalens terrass", "23": "Festlokalens bar", "24": "Festlokalens lounge", "25": "Festlokalens matsal",
-    "26": "Festlokalens stora sal", "26d": "Stora salen, dukad (illustration)", "27": "Vid gästköket", "28": "Hallen till gästköket", "29": "Gästköket"
+    "26": "Festlokalens stora sal", "26d": "Stora salen, dukad (illustration)", "27": "Vid gästköket", "28": "Gästkök, wc och dusch", "29": "Gästköket"
   };
   var active = null;
   function txt(id) { return PT.s[id] || [id, ""]; }
